@@ -1,52 +1,23 @@
 import 'package:flutter/material.dart';
 void main() {  
-  final popupMenu = PopupMenuButton( 
-    icon: const Icon(Icons.more_vert), 
-    itemBuilder: (BuildContext context) => <PopupMenuEntry>[ 
-      const PopupMenuItem( 
-        value: 'search', 
-        child: ListTile( 
-          leading: Icon(Icons.search),
-          title : Text('検索する')
-        )
-      ),
-      const PopupMenuDivider(), // ポップメニューの区切り線
-      const PopupMenuItem(
-        value: 'calendar',
-        child: ListTile(
-          leading: Icon(Icons.calendar_month),
-          title : Text('カレンダー')
-        )
-      ),
-      const PopupMenuItem(
-        value: 'print',
-        child: ListTile(
-          leading: Icon(Icons.print),
-          title : Text('印刷する')
-        )
-      ),
-    ],
-    onSelected: (value){
-      switch(value){
-        case 'search': print("検索");
-        case 'calendar': print("カレンダー");
-        case 'print': print("印刷");
-      }
-    }  
+  final dc = DrawerHeader(child: Text('ドロワーのヘッダー')); // 1
+  final drawer = Drawer( // 2
+    child: dc, // 3
   );
-
-
-  final appBar = AppBar(
+  final appBar = AppBar( // 4
     title: const Text('アプリのタイトル'),
-    actions: [ popupMenu, ], // 9
+    // leading: IconButton( // 5
+    //   icon: const Icon(Icons.info), onPressed: () {},
+    // ),
   );
-  
   final sc = Scaffold(
-    appBar: appBar, body:
-    const Text("テキスト"), );
-  
+    appBar: appBar, // 6
+    drawer: drawer, // 7
+    body: const Text("テキスト"), // ボディー
+  );
+
   final app = MaterialApp(
-    debugShowCheckedModeBanner: false, // 10
+    debugShowCheckedModeBanner: false,
     home: sc
   );
   runApp(app);
