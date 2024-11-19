@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 void main() {
   const body = Center( child: Text("テキスト"),);
 
-  final fab = Column( // 1
-    mainAxisAlignment: MainAxisAlignment.end, // 2
+  final fab = Row( // 1
+    mainAxisAlignment: MainAxisAlignment.center, // 2
     children: [
       FloatingActionButton( 
         onPressed: () { print("ボタンが押されました"); }, 
         child: const Icon(Icons.add)
       ),
-      const SizedBox( height: 10, ), // 3
+      const SizedBox( width: 10, ), // 3
       FloatingActionButton( 
         onPressed: () { print("ボタンが押されました"); }, 
         backgroundColor: Colors.amber,
