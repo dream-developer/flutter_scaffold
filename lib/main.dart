@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
 void main() {  
-  final popupMenu = PopupMenuButton( // 1
-    icon: const Icon(Icons.more_vert), // 2
-    itemBuilder: (BuildContext context) => <PopupMenuEntry>[ // 3
-      const PopupMenuItem( // 4
-        value: 'search', // 5
-        child: ListTile( // 6
+  final popupMenu = PopupMenuButton( 
+    icon: const Icon(Icons.more_vert), 
+    itemBuilder: (BuildContext context) => <PopupMenuEntry>[ 
+      const PopupMenuItem( 
+        value: 'search', 
+        child: ListTile( 
           leading: Icon(Icons.search),
           title : Text('検索する')
         )
       ),
+      const PopupMenuDivider(), // ポップメニューの区切り線
+      const PopupMenuItem(
+        value: 'calendar',
+        child: ListTile(
+          leading: Icon(Icons.calendar_month),
+          title : Text('カレンダー')
+        )
+      ),
+      const PopupMenuItem(
+        value: 'print',
+        child: ListTile(
+          leading: Icon(Icons.print),
+          title : Text('印刷する')
+        )
+      ),
     ],
-    onSelected: (value){ // 7
-      switch(value){ // 8
+    onSelected: (value){
+      switch(value){
         case 'search': print("検索");
+        case 'calendar': print("カレンダー");
+        case 'print': print("印刷");
       }
     }  
   );
+
 
   final appBar = AppBar(
     title: const Text('アプリのタイトル'),
