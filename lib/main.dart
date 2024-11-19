@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
 void main() {
-  final appBar = AppBar( // 1
-    backgroundColor: Colors.orange[50], // 2
-    title: const Text('アプリのタイトル'), // 3          
-    centerTitle: true, // 4
-    titleTextStyle: const TextStyle( // 5
-      fontStyle: FontStyle.italic,
-      fontSize: 20, 
-      color: Colors.green,
+  final appBar = AppBar( 
+    title: const Text('アプリのタイトル'),  
+    leading: IconButton( // ハンバーガーメニュー
+      icon: const Icon(Icons.menu), onPressed: () {},
     ),
-    leading: IconButton( // 6
-      icon: const Icon(Icons.info), onPressed: () {},
-    ),
-    actions: [ // 7
-      IconButton( icon: const Icon(Icons.share), onPressed: () {},),
-      IconButton( icon: const Icon(Icons.notifications), onPressed: () {},),
+    actions: [ 
+      IconButton( // ３点ドットメニュー
+        icon: const Icon(Icons.more_vert), onPressed: () {},
+      ),
     ],
   );
   final sc = Scaffold(
-    appBar: appBar, // 8
+    appBar: appBar, 
     body: const Text("テキスト"),
   );
   final app = MaterialApp(
-    debugShowCheckedModeBanner: false, // 9
+    debugShowCheckedModeBanner: false, 
     home: sc
   );
   runApp(app);
