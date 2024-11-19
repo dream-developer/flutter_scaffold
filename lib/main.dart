@@ -2,10 +2,20 @@ import 'package:flutter/material.dart';
 void main() {
   const body = Center( child: Text("テキスト"),);
 
-  final fab = FloatingActionButton( // 1
-    onPressed: () { print("ボタンが押されました"); }, // 2 
-    tooltip: 'ツールチップ', // 3
-    child: const Icon(Icons.add), // 4
+  final fab = Column( // 1
+    mainAxisAlignment: MainAxisAlignment.end, // 2
+    children: [
+      FloatingActionButton( 
+        onPressed: () { print("ボタンが押されました"); }, 
+        child: const Icon(Icons.add)
+      ),
+      const SizedBox( height: 10, ), // 3
+      FloatingActionButton( 
+        onPressed: () { print("ボタンが押されました"); }, 
+        backgroundColor: Colors.amber,
+        child: const Icon(Icons.edit),
+      ),
+    ],
   );
 
   final sc = Scaffold(
