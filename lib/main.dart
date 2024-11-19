@@ -1,28 +1,46 @@
 import 'package:flutter/material.dart';
+
 void main() {
-  const body = Center( child: Text("テキスト"),);
+  runApp(const MyApp());
+}
 
-  final fab = Row( // 1
-    mainAxisAlignment: MainAxisAlignment.center, // 2
-    children: [
-      FloatingActionButton( 
-        onPressed: () { print("ボタンが押されました"); }, 
-        child: const Icon(Icons.add)
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
-      const SizedBox( width: 10, ), // 3
-      FloatingActionButton( 
-        onPressed: () { print("ボタンが押されました"); }, 
-        backgroundColor: Colors.amber,
-        child: const Icon(Icons.edit),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget { 
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    final snackbar = SnackBar( // 1
+      content: const Text('スナックバー'), // 2
+      duration: const Duration(milliseconds: 10000), // 3
+      showCloseIcon: true, // 4
+      onVisible: () { print('スナックバーが表示されました'); }, // 5
+      action: SnackBarAction( // 6
+        label: 'アクションボタン',
+        onPressed: () { print('アクションボタンが押されました'); }, // 7
       ),
-    ],
-  );
-
-  final sc = Scaffold(
-    body: body, // ボディー
-    floatingActionButton: fab, // フローティングアクションボタン
-  );
-
-  final app = MaterialApp(home: sc);
-  runApp(app);
+    );
+    final button = ElevatedButton( 
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar( snackbar, ); // 8
+      },
+      child: const Text("ボタン"),
+    );
+    return Scaffold( body: button);
+  }
 }
