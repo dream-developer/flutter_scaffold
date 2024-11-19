@@ -23,21 +23,20 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget { 
   const MyHomePage({super.key, required this.title});
   final String title;
+
+  _mySnackBar(String msg){ // 1
+    return SnackBar(
+      content: Text('【スナックバー】$msg'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final snackbar = SnackBar( // 1
-      content: const Text('スナックバー'), // 2
-      duration: const Duration(milliseconds: 10000), // 3
-      showCloseIcon: true, // 4
-      onVisible: () { print('スナックバーが表示されました'); }, // 5
-      action: SnackBarAction( // 6
-        label: 'アクションボタン',
-        onPressed: () { print('アクションボタンが押されました'); }, // 7
-      ),
-    );
     final button = ElevatedButton( 
       onPressed: () {
-        ScaffoldMessenger.of(context).showSnackBar( snackbar, ); // 8
+        ScaffoldMessenger.of(context).showSnackBar(
+          _mySnackBar("メッセージ") // 2
+        );
       },
       child: const Text("ボタン"),
     );
