@@ -30,9 +30,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> { 
-  int _selectedIndex = 0; // 1
-
-  final _items = [ // 2
+  int _selectedIndex = 0;
+  _onTapped(int index) { // 1
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  final _items = [
     const BottomNavigationBarItem( // index:0
       icon: Icon(Icons.home),
       label: 'ホーム',
@@ -50,32 +54,57 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   ];
 
-  final _screens = [ // 3
-    const Text('ホーム'),
-    const Text('使い方'),
-    const Text('設定'),
+  final _screens = [  // 2
+    const HomeScreen(),
+    const HelpScreen(),
+    const SettingsScreen(),
   ];
-
+  
   @override
   Widget build(BuildContext context) {
-    final bnBar =  BottomNavigationBar( // 4
-      items: _items, // 5
-      backgroundColor: Colors.grey[800], // 6
-      selectedItemColor: Colors.white, // 7
-      unselectedItemColor: Colors.grey, // 8
-      currentIndex: _selectedIndex, // 9
-      onTap: (index) { // 10
-        setState(() {
-          _selectedIndex = index;
-        });
-      }
+    final bnBar =  BottomNavigationBar( 
+      items: _items, 
+      backgroundColor: Colors.grey[800], 
+      selectedItemColor: Colors.white, 
+      unselectedItemColor: Colors.grey, 
+      currentIndex: _selectedIndex, 
+      onTap: _onTapped,  // 1
     );
 
-    final body = Center(child: _screens[_selectedIndex]); // 11
+    final body = Center(child: _screens[_selectedIndex]); 
 
     return Scaffold(
       body: body, // ボディー
       bottomNavigationBar: bnBar, // ボトムナビゲーションバー
     );
+  }
+}
+
+class HomeScreen extends StatelessWidget { 
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const body = Center(child: Text('ホーム'));
+    return const Scaffold( body: body, );
+  }
+}
+
+class HelpScreen extends StatelessWidget {
+  const HelpScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    const body = Center(child: Text('使い方'));
+    return const Scaffold( body: body, );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const body = Center(child: Text('設定'));
+    return const Scaffold( body: body, );
   }
 }
